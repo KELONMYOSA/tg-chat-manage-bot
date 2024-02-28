@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  chat_manage_bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: chat_manage_bot
+    container_name: chat_manage_bot
+    volumes:
+      - ./src/db/database.sqlite:/app/src/db/database.sqlite
+    ports:
+      - "5005:5005"
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:6000/bot/health || exit 1" ]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 40s

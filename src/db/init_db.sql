@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS groups (
+    group_id INTEGER PRIMARY KEY,
+    title TEXT
+);
+
+CREATE TABLE IF NOT EXISTS admins (
+    username TEXT PRIMARY KEY
+);

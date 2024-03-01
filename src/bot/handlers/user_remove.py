@@ -31,6 +31,8 @@ async def get_user_id_to_remove(message: Message, state: FSMContext, bot: Bot):
 
     if message.forward_from:
         user_id = message.forward_from.id
+    elif message.reply_to_message:
+        user_id = message.reply_to_message.from_user.id
     else:
         try:
             user_id = int(message.text)

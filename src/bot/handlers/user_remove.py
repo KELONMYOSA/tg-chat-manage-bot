@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from aiogram import Bot, Router
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
@@ -46,7 +48,7 @@ async def get_user_id_to_remove(message: Message, state: FSMContext, bot: Bot):
     msg_rows = []
     for group in groups_list:
         try:
-            await bot.ban_chat_member(group[0], user_id)
+            await bot.ban_chat_member(group[0], user_id, until_date=timedelta(seconds=30))
             msg_rows.append(f"{group[1]}: Удален")
         except:  # noqa: E722
             msg_rows.append(f"{group[1]}: Не удален")
